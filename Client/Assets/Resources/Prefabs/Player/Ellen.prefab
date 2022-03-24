@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3853157639820423699}
   m_Layer: 0
   m_Name: Ellen
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9d1c50de94a47c5a70a418f138d3a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _state: 0
 --- !u!1 &3853157639586203649
 GameObject:
   m_ObjectHideFlags: 0
