@@ -352,8 +352,6 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/Contents/CharacterSkill.cs"
-"Assets/Scripts/Contents/GangBadge.cs"
 "Assets/Scripts/Contents/PlayerStat.cs"
 "Assets/Scripts/Contents/Skill.cs"
 "Assets/Scripts/Contents/Stat.cs"

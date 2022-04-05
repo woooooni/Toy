@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 using static Define;
-public class Skill : MonoBehaviour
+public class Skill
 {
-    private IEnumerator _coSkill;
-    public Skill(IEnumerator coSkill)
+    int _id;
+    string _name;
+    int _damage;
+    float _coolTime;
+    float _range;
+    
+    public Skill()
     {
-        _coSkill = coSkill;
+        
     }
 
-    public Coroutine UseSkill()
-    {
-        return StartCoroutine(_coSkill);
-    }
-
-
+    
 }
