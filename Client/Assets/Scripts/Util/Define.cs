@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Define{
+    public enum Layer
+    {
+        Terrain = 22,
+        Enemy = 23,
+    }
     public enum State
     {
         Idle,

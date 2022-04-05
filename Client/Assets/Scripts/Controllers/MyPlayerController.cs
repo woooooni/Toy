@@ -14,26 +14,28 @@ public class MyPlayerController : PlayerController
         GetInput();
     }
 
+    int _mask = (1 << (int)Layer.Terrain) | (1 << (int)Layer.Enemy);
     void GetInput()
     {
         if (Input.GetMouseButton(1))
         {
             //if (State == State.Attack)
             //    return;
+            
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, _mask))
             {
-                BaseController bc = hit.transform.gameObject.GetComponent<BaseController>();
-                if (bc != null)
+                if(hit.collider.gameObject.layer == ((int)Layer.Enemy))
                 {
-                    _target = bc.gameObject;
-                    SetDest(_target.gameObject.transform.position, Range);
+                    Debug.Log($"[Hit Info]\n[Hit Name] {hit.collider.gameObject.name}\n[Hit Layer] {hit.collider.gameObject.layer.ToString()}");
+                    Target = hit.collider.gameObject;
+                    SetDest(Target.gameObject.transform.position, _stat.Range);
                 }
-                else
+
+                else if(hit.collider.gameObject.layer == ((int)Layer.Terrain))
                 {
-                    _target = null;
+                    Target = null;
                     SetDest(hit.point);
-                    State = State.Move;
                 }
             }
 
@@ -41,30 +43,22 @@ public class MyPlayerController : PlayerController
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (_coSkill != null)
-                return;
-            _coSkill = StartCoroutine("QSkill");
+            
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if (_coSkill != null)
-                return;
-            _coSkill = StartCoroutine("QSkill");
+            
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (_coSkill != null)
-                return;
-            _coSkill = StartCoroutine("QSkill");
+            
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (_coSkill != null)
-                return;
-            _coSkill = StartCoroutine("QSkill");
+            
         }
     }
 }

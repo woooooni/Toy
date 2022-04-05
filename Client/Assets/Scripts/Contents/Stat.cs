@@ -4,14 +4,15 @@ using System.Collections;
 public class Stat : MonoBehaviour
 {
 
-    [SerializeField] int _level;
-    [SerializeField] int _hp;
-    [SerializeField] int _maxHp;
+    [SerializeField] protected int _level;
+    [SerializeField] protected int _hp;
+    [SerializeField] protected int _maxHp;
 
-    [SerializeField] int _att;
-    [SerializeField] int _def;
+    [SerializeField] protected int _att;
+    [SerializeField] protected int _def;
 
-    [SerializeField] float _speed;
+    [SerializeField] protected float _speed;
+    [SerializeField] protected float _range;
 
     public int Level
     {
@@ -47,5 +48,22 @@ public class Stat : MonoBehaviour
     {
         get { return _speed; }
         set { _speed = value; }
+    }
+
+    public float Range
+    {
+        get { return _range; }
+        set { _range = value; }
+    }
+
+    private void Start()
+    {
+        Level = 1;
+        Hp = 100;
+        MaxHp = 100;
+        Att = 10;
+        Def = 1;
+        MoveSpeed = 5f;
+        Range = 8f;
     }
 }

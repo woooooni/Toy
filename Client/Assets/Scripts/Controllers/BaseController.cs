@@ -5,11 +5,16 @@ using static Define;
 public class BaseController : MonoBehaviour
 {
     [SerializeField]
-    public GameObject _target;
+    private GameObject _target = null;
+    public GameObject Target
+    {
+        get { return _target; }
+        set { _target = value; }
+    }
 
     [SerializeField]
     private State _state;
-    public virtual State State
+    public State State
     {
         get { return _state; }
         set
@@ -19,8 +24,10 @@ public class BaseController : MonoBehaviour
             switch (value)
             {
                 case State.Idle:
+                    _anim.CrossFade("IDLE", 0.1f);
                     break;
                 case State.Move:
+                    _anim.CrossFade("MOVE", 0.1f);
                     break;
                 case State.Attack:
                     break;
@@ -31,31 +38,8 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    [SerializeField] protected int _speed;
-    public int Speed
-    {
-        get { return _speed; }
-        set { _speed = value; }
-    }
-
-    [SerializeField] private float _range;
-    public float Range
-    {
-        get { return _range; }
-        set { _range = value; }
-    }
-
-
-    [SerializeField] int _hp;
-    public int Hp
-    {
-        get { return _hp; }
-        set { _hp = value; }
-    }
-
 
     [SerializeField]
-    protected bool _canMove = true;
     protected Animator _anim;
 
     // Use this for initialization

@@ -3,11 +3,9 @@ using System.Collections;
 using static Define;
 public class ProjectileController : BaseController
 {
-    int power = 10;
     protected override void Init()
     {
         base.Init();
-        Speed = 20;
         State = State.Move;
     }
 
@@ -18,7 +16,7 @@ public class ProjectileController : BaseController
 
     public override void UpdateMoving()
     {
-        transform.Translate(transform.forward * Speed * Time.deltaTime);
+        transform.Translate(transform.forward * 20 * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +25,12 @@ public class ProjectileController : BaseController
         BaseController bc = other.GetComponent<BaseController>();
         if (bc == null)
             Debug.Log("못찾음");
-        bc.OnDamaged(gameObject, damage: power);
+        bc.OnDamaged(gameObject, damage: 10);
         Destroy(this.gameObject);
+    }
+
+    public override void OnDamaged(GameObject attacker, int damage)
+    {
+        
     }
 }

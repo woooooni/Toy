@@ -5,14 +5,19 @@ using static Define;
 
 public class PlayerController : BaseController
 {
-    float _move_ratio = 0f;
+    
     private NavMeshAgent _agent;
+    protected PlayerStat _stat;
 
     protected override void Init()
     {
         base.Init();
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
+        _stat = gameObject.GetOrAddComponent<PlayerStat>();
+        if(_stat != null)
+            _agent.speed = _stat.MoveSpeed;
+
     }
 
     protected override void UpdateController()
@@ -36,58 +41,50 @@ public class PlayerController : BaseController
 
     protected void Turn()
     {
-        if(_target != null)
+        if (Target != null)
         {
-            transform.forward = _target.transform.position - transform.position;
+            transform.forward = Target.transform.position - transform.position;
             return;
         }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             Vector3 mouseDir = new Vector3(hit.point.x, transform.position.y, hit.point.z) - transform.position;
             transform.forward = mouseDir;
         }
     }
 
-
     #region Skills
     protected Coroutine _coSkill;
-    public virtual IEnumerator NormalAttack()
+    public void NormalAttack()
     {
-        yield return null;
-        ////스테이트 변경
-        //Turn();
-        //State = State.Attack;
-        //_anim.Play(AttackType.NORMAL_ATTACK.ToString());
-
-        //_target.GetComponent<BaseController>().OnDamaged(gameObject, 10);
-        ////총알생성
-        //yield return new WaitForSeconds(0.975f);
-
-        ////초기화
-        //StopCoroutine(_coSkill);
-        //_coSkill = null;
+        Debug.Log("NormalAtt!");
+        BaseController bc = Target.GetComponent<BaseController>();
+        if (bc == null)
+            return;
+        bc.OnDamaged(gameObject, _stat.Att);
     }
 
-    public virtual IEnumerator QSkill()
+
+    public void QSkill()
     {
-        yield return null;
+        
     }
 
-    public virtual IEnumerator WSkill()
+    public void WSkill()
     {
-        yield return null;
+        
     }
 
-    public virtual IEnumerator ESkill()
+    public void ESkill()
     {
-        yield return null;
+        
     }
 
-    public virtual IEnumerator RSkill()
+    public void RSkill()
     {
-        yield return null;
+        
     }
     #endregion
 
@@ -97,49 +94,35 @@ public class PlayerController : BaseController
     public override void UpdateIdle()
     {
         base.UpdateIdle();
-        _move_ratio = Mathf.Lerp(_move_ratio, 0, 10.0f * Time.deltaTime);
-        _anim.SetFloat("move_ratio", _move_ratio);
-        _anim.Play("IDLE_MOVE");
-
-
-        if(_target != null && Vector3.Distance(_target.transform.position, transform.position) <= Range)
-        {
-            State = State.Attack;
-        }
+        
     }
 
     public override void UpdateMoving()
     {
         base.UpdateMoving();
-
-        if ((_agent.destination == null) || (Vector3.Distance(_agent.destination, transform.position) <= 0.1f))
+        if (_agent.destination == null || Vector3.Distance(_agent.destination, transform.position) <= 0.1f)
         {
             State = State.Idle;
             return;
         }
-        _move_ratio = Mathf.Lerp(_move_ratio, 1, 10.0f * Time.deltaTime);
-        _anim.SetFloat("move_ratio", _move_ratio);
-        _anim.Play("IDLE_MOVE");
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_agent.destination - transform.position), 10.0f * Time.deltaTime);
 
-        if (_target != null && Vector3.Distance(_target.transform.position, transform.position) <= Range)
+        if ((Target != null) && (Vector3.Distance(Target.transform.position, transform.position) <= _stat.Range))
         {
             _agent.ResetPath();
             State = State.Attack;
             return;
         }
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_agent.destination - transform.position), 10.0f * Time.deltaTime);
     }
 
     public override void UpdateAttack()
     {
         base.UpdateAttack();
-        if(_coSkill == null)
-        {
-            if (_target == null)
-                State = State.Idle;
-            else
-                _coSkill = StartCoroutine("NormalAttack");
-        }
+        Turn();
+        if (Target == null)
+            State = State.Idle;
+        else
+            _anim.Play("NORMAL_ATTACK");
     }
 
     public override void UpdateDead()

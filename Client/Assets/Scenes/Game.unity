@@ -393,7 +393,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 10
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 10000
@@ -419,10 +419,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _state: 0
+  _anim: {fileID: 0}
+--- !u!114 &909546535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909546524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7732393c1ccb4d55a9eaaff6d84df20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 0
+  _hp: 0
+  _maxHp: 0
+  _att: 0
+  _def: 0
   _speed: 0
   _range: 0
-  _hp: 0
-  _canMove: 1
+  _exp: 0
 --- !u!4 &1039251285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1470689872735118252, guid: df1970710f5224c1fa1d10cd4bbe9a88,
@@ -526,7 +543,7 @@ GameObject:
   - component: {fileID: 1590703618}
   - component: {fileID: 1590703617}
   - component: {fileID: 1590703616}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,10 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _state: 0
-  _speed: 0
-  _range: 0
-  _hp: 0
-  _canMove: 1
+  _anim: {fileID: 0}
 --- !u!65 &1590703617
 BoxCollider:
   m_ObjectHideFlags: 0
