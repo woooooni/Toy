@@ -56,11 +56,32 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Scripts/CameraController.cs" />
+    <Compile Include="Assets/Scripts/Managers/Core/SceneManagerEx.cs" />
+    <Compile Include="Assets/Textures &amp; Source/Low Poly Guns/Scripts/GunsMenu.cs" />
+    <Compile Include="Assets/Scripts/Scenes/GameScene.cs" />
+    <Compile Include="Assets/Scripts/Managers/Core/Poolable.cs" />
+    <Compile Include="Assets/Scripts/Managers/Managers.cs" />
+    <Compile Include="Assets/Scripts/Interface/ISkill.cs" />
+    <Compile Include="Assets/Scripts/Util/Util.cs" />
+    <Compile Include="Assets/Scripts/Controllers/CameraController.cs" />
+    <Compile Include="Assets/Scripts/Controllers/BaseController.cs" />
     <Compile Include="Assets/Scripts/Util/Define.cs" />
-    <Compile Include="Assets/Scripts/PlayerController.cs" />
+    <Compile Include="Assets/Textures &amp; Source/Low Poly Guns/Scripts/GunView.cs" />
+    <Compile Include="Assets/Scripts/Util/Extension.cs" />
+    <Compile Include="Assets/Scripts/Scenes/BaseScene.cs" />
+    <Compile Include="Assets/Scripts/Controllers/MonsterController.cs" />
+    <Compile Include="Assets/Scripts/Managers/Core/SoundManager.cs" />
+    <Compile Include="Assets/Scripts/Managers/Core/DataManager.cs" />
+    <Compile Include="Assets/Scripts/Controllers/ProjectileController.cs" />
+    <Compile Include="Assets/Scripts/Controllers/PlayerController.cs" />
+    <Compile Include="Assets/Scripts/Managers/Core/PoolManager.cs" />
+    <Compile Include="Assets/Scripts/Managers/Core/ResourceManager.cs" />
+    <Compile Include="Assets/Scripts/Contents/Skill.cs" />
+    <Compile Include="Assets/Scripts/Controllers/MyPlayerController.cs" />
+    <Compile Include="Assets\Scripts\Contents\NewMonoBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets/Textures &amp; Source/Geopipe/Pack01/NYBlock01/ModelLicense.txt" />
     <None Include="Assets/Textures &amp; Source/3DGamekitLite/Art/Shaders/Swish.shader" />
     <None Include="Assets/Textures &amp; Source/3DGamekitLite/Art/Shaders/Respawn.shader" />
     <None Include="Assets/Textures &amp; Source/3DGamekitLite/Art/Shaders/Triplanar.shader" />
